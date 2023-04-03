@@ -15,7 +15,6 @@ import java.util.List;
 
 public class TaskRepositoryImplementation implements TaskRepository {
 
-    @Inject
     public RequestTask requestTask;
 
     @Override
