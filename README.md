@@ -20,8 +20,6 @@
 <h2>Installation</h2>
 <ol>
   <li>Clone the repository: <code>git clone https://github.com/[username]/TaskOn.git</code></li>
-  <li>Install dependencies: <code>npm install</code></li>
-  <li>Run the application: <code>npm start</code></li>
 </ol>
 
 <h2>Contributing</h2>
