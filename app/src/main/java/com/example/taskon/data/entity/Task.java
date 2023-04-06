@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 @Data
-public class Task {
+public abstract class Task {
 
     @SerializedName("userId")
     private int userId;
@@ -16,7 +16,22 @@ public class Task {
     @SerializedName("body")
     private String previousTask;
 
-    public boolean isPresent() {
-        return !task.isEmpty();
+    // 0 for complete, 1 for normal, -1 for overdue, 99 for on-hold
+    private int status;
+
+    public boolean isNormal() {
+        return status == 1;
+    }
+
+    public boolean isOverDue() {
+        return status == -1;
+    }
+
+    public boolean isComplete() {
+        return status == 0;
+    }
+
+    public boolean isOnHold() {
+        return status == 99;
     }
 }
