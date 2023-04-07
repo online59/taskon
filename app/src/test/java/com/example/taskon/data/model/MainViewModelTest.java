@@ -3,7 +3,7 @@ package com.example.taskon.data.model;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.Observer;
 import com.example.taskon.data.entity.Task;
-import com.example.taskon.data.repository.BaseRepositoryImplementation;
+import com.example.taskon.data.repository.RetrofitRepoImp;
 import com.example.taskon.data.service.RetrofitService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -22,13 +22,13 @@ public class MainViewModelTest {
     @Mock
     Observer<Task> taskObserver;
 
-    private BaseViewModel viewModel;
+    private MainViewModel viewModel;
 
     @Before
     public void setUp() {
 
         MockitoAnnotations.openMocks(this);
-        viewModel = new BaseViewModel(new BaseRepositoryImplementation(new RetrofitService()));
+        viewModel = new MainViewModel(new RetrofitRepoImp(new RetrofitService()));
 
     }
 
