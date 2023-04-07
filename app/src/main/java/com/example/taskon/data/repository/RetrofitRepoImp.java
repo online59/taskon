@@ -1,10 +1,11 @@
 package com.example.taskon.data.repository;
 
+import com.example.taskon.data.request.RetrofitCall;
 import com.example.taskon.data.request.WebRequestCall;
 import com.example.taskon.data.service.WebService;
 import org.jetbrains.annotations.Nullable;
 
-public class RetrofitRepoImp extends MainRepository<WebRequestCall> {
+public class RetrofitRepoImp extends MainRepository<RetrofitCall> {
 
     WebService webService;
 
@@ -13,7 +14,7 @@ public class RetrofitRepoImp extends MainRepository<WebRequestCall> {
     }
 
     @Override
-    public WebRequestCall getService(@Nullable String url) {
+    public RetrofitCall getService(@Nullable String url) {
         return webService.getService(url);
     }
 }
