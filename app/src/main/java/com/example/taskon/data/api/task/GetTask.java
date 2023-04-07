@@ -1,4 +1,4 @@
-package com.example.taskon.data.request.task;
+package com.example.taskon.data.api.task;
 
 import com.example.taskon.data.entity.Task;
 import retrofit2.Call;

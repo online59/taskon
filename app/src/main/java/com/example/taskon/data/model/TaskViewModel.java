@@ -2,29 +2,34 @@ package com.example.taskon.data.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import com.example.taskon.data.api.RetrofitCall;
 import com.example.taskon.data.entity.Task;
 import com.example.taskon.data.repository.MainRepository;
-import com.example.taskon.data.api.RetrofitCall;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import java.util.List;
 
-public class MainViewModel extends ViewModel {
+public class TaskViewModel extends MyViewModel<Task> {
 
-    MainRepository<RetrofitCall> repository;
+    private final MainRepository<RetrofitCall> repository;
+    private String url;
 
-    private final static String url = "https://jsonplaceholder.typicode.com/";
-
-    public MainViewModel(MainRepository<RetrofitCall> repository) {
+    public TaskViewModel(MainRepository<RetrofitCall> repository) {
         this.repository = repository;
     }
 
-    private final MutableLiveData<List<Task>> taskList = new MutableLiveData<>();
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-    public LiveData<List<Task>> getAllTasks() {
+    private final MutableLiveData<List<Task>> taskList = new MutableLiveData<>();
+    private final MutableLiveData<Task> task = new MutableLiveData<>();
+
+    @Override
+    public LiveData<List<Task>> getAll() {
+
         repository.getService(url).getAll().enqueue(new Callback<List<Task>>() {
             @Override
             public void onResponse(Call<List<Task>> call, Response<List<Task>> response) {
@@ -40,9 +45,9 @@ public class MainViewModel extends ViewModel {
         return taskList;
     }
 
-    private final MutableLiveData<Task> task = new MutableLiveData<>();
+    @Override
+    public LiveData<Task> getById(int id) {
 
-    public LiveData<Task> getTaskById(int id) {
         repository.getService(url).getById(id).enqueue(new Callback<Task>() {
             @Override
             public void onResponse(Call<Task> call, Response<Task> response) {
@@ -58,5 +63,18 @@ public class MainViewModel extends ViewModel {
         return task;
     }
 
+    @Override
+    public void deleteAll() {
+        repository.getService(url).deleteAll();
+    }
 
+    @Override
+    public void deleteById(int id) {
+        repository.getService(url).deleteById(id);
+    }
+
+    @Override
+    public void update(int id, Task obj) {
+        repository.getService(url).updateTask(id, obj);
+    }
 }

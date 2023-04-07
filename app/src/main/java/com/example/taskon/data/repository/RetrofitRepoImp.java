@@ -1,8 +1,7 @@
 package com.example.taskon.data.repository;
 
-import com.example.taskon.data.request.RetrofitCall;
-import com.example.taskon.data.request.WebRequestCall;
-import com.example.taskon.data.service.WebService;
+import com.example.taskon.data.api.RetrofitCall;
+import com.example.taskon.data.client.WebService;
 import org.jetbrains.annotations.Nullable;
 
 public class RetrofitRepoImp extends MainRepository<RetrofitCall> {

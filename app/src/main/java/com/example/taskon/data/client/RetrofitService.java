@@ -1,19 +1,18 @@
-package com.example.taskon.data.service;
+package com.example.taskon.data.client;
 
-import com.example.taskon.data.request.RetrofitCall;
-import com.example.taskon.data.request.WebRequestCall;
+import com.example.taskon.data.api.RetrofitCall;
 import org.jetbrains.annotations.Nullable;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitService extends WebService {
+public class RetrofitService implements WebService {
 
     private Retrofit build(String url) {
         return new Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build();
     }
 
     @Override
-    public WebRequestCall getService(@Nullable String url) {
+    public RetrofitCall getService(@Nullable String url) {
         return build(url).create(RetrofitCall.class);
     }
 }
