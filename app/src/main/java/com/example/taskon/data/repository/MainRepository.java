@@ -4,6 +4,6 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class MainRepository<T> {
 
-    public abstract T getService(@Nullable String url);
+    public abstract T getDatabase();
 
 }
